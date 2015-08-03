@@ -1,0 +1,89 @@
+<html ng-app="pokeCounter">
+<head>
+	<title>PokeCounter</title>
+	<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+	<link href="design.css" rel="stylesheet" type="text/css" media="screen">
+	<script type="text/javascript" src="libs/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+	<script src="https://cdn.firebase.com/js/client/2.2.0/firebase.js"></script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-27561479-2', 'auto');
+		ga('send', 'pageview');
+	</script>
+</head>
+<body>
+	<div id="overlay">
+		<div id="popup">
+			<h1 class="title">Update Notes</h1>
+
+			<h3>Version 0.05</h3>
+			<ul>
+				<li>Title !</li>
+				<li>Got It! button to validate the shiny you have!</li>
+				<li>Your shinies display in the sidebar.</li>
+				<li>New images for all generations.</li>
+			</ul>
+
+			<h3>Version 0.04</h3>
+			<ul>
+				<li>Add timer mode, access it by clicking on <img class="mode" height="20px" src="css-img/counter.png" title="Swap to Timer">.</li>
+				<li>Click on a counter select it, by pressing "space" you can icrease simply the value.</li>
+			</ul>
+			<h3>Version 0.03</h3>
+			<ul>
+				<li>You can now assign what method you are using.</li>
+				<li>Icon display each method egg : <img height="20px" src="css-img/egg.png" />, reset : <img height="20px" src="css-img/reset.png" /> and radar : <img height="20px" src="css-img/radar.png" /></li>
+				<li>Counters are now unique by intern ID and not by pokemon ID</li>
+				<li>Chain are only display if you are using Radar Method</li>
+				<li>Odds are display. I assumed that Shiny Charm give : x3 and Masuda : x6. I didn't find an unanimous answer. If you find something send me a mail at pokecounter@gmail.com</li>
+				<li>Odds by version I assumed that DPP = 1/8192, X/Y and ORSA = 1/4096.</li>
+			</ul>
+			<h3>Version 0.02</h3>
+			<ul>
+				<li>Add manual values (click on the number to edit) Thanks <a href="http://www.reddit.com/user/Onihige">Onihige</a> from <a href="http://www.reddit.com/r/pokemon/">/r/pokemon</a>.</li>
+				<li>Pokemon pictures changed by sprites.</li>
+				<li>Chain system added and probability added with this formula :  (14,747 - 40 * n) / (2,621,440 * (41 - n)).</li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="wrapper">
+		<div id="open"><span>Shinies</span></div>
+		<div id="collection">
+			<h1 class="title">Your Shinies !</h1>
+			<div id="{{elt.id}}" class="element" ng-repeat="elt in collection">
+				<div id="imgWrap">
+				<span class="pkmnName mini">{{elt.pokemon}}</span>
+					<img height="40" src="img/{{elt.numero}}.png">
+				</div>
+			<!-- 	{{elt.version}}-->
+				{{elt.quantity}}
+				<!-- <img height="20px" src="css-img/{{elt.method}}.png"> -->
+			</div>
+		</div>
+	</div>
+
+	<a id="js-notes" href="#">Update notes v0.05</a>
+	<a href="#/counter">Signup</a>
+	<a href="https://docs.google.com/forms/d/1cVxczG5nCxIFeIddaZFC_8GUT44JzgaaFgIvr4IYXtA/viewform?usp=send_form">Feedbacks</a>
+	<header style="margin:auto; width: 920px;text-align: center;">
+		<h1 class="mainTitle">Poke-Counter</h1>
+		I need help for <b>UI</b> and <b>Design</b>, as you can see it's getting awful... If you want, contact me at the adresses below.<br>
+		Be careful ! At the moment your data are stored in your browser ! Don't clean your cache !<br>
+		I need you to improve Poke Counter, <a href="http://goo.gl/forms/1U8TEsAUXx" target="_blank"> click here to help me!</a> or contact me at <b>pokecounter@gmail.com</b> or <a href="https://twitter.com/Pr0x__">@Pr0x__</a> <br/>
+	</header>
+	<!-- Counters -->
+	<div id="container" ng-view="">
+	</div>
+
+	<script type="text/javascript" src="libs/jquery.js"></script>
+	<script type="text/javascript" src="libs/underscore.js"></script>
+	<script type="text/javascript" src="pokemon.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>

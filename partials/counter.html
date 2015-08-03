@@ -1,0 +1,79 @@
+<div id="{{counter.id}}" ng-controller="todoCtrl" ng-init="init()" ng-keyup="onkeyUp($event)" class="counter" ng-repeat="counter in counters">
+	<!--span class="shortcut">X</span-->
+	<span class="pkmnName"><img height="20px" src="css-img/{{counter.method}}.png"> {{counter.pokemon}}</span>
+	<button class="cross" ng-click="erase(counter.id)">x</button>
+	<span class="img"><img height="40" src="img/{{counter.numero}}.png"></span>
+	<div class="numberz">
+		<button class="less" ng-click="inc(-1, counter.id)">-</button>
+		<span id="{{counter.id}}" class="number" contenteditable="true">{{counter.quantity}}</span>
+		<button class="more" ng-click="inc(1, counter.id)">+</button>
+	</div>
+	<div ng-switch="counter.method" >
+		<div ng-switch-when="radar">
+			<div class="chain">
+				Chain :
+				<button ng-click="incChain(-1, counter.id)" >-</button>
+				<label id="l{{counter.id}}" class="chainCount" >{{counter.chain}}</label>
+				<button ng-click="incChain(1, counter.id)" >+</button>
+			</div>
+			<div class="chain">
+				Odds : <label id="o{{counter.id}}">{{counter.chainOdd}}%</label>
+				<button ng-click="resetChain(counter.id)">Reset</button>
+			</div>
+		</div>
+		<div class="egg" ng-switch-when="egg">
+			1/{{counter.odd}}
+		</div>
+		<div class="egg" ng-switch-when="reset">
+			1/{{counter.odd}}
+		</div>
+	</div>
+	<button class="gotIt" ng-click="addToCollec(counter.id)">Got It !</button>
+</div>
+
+<div class="counter" ng-switch="creatorMode">
+	<div ng-switch-when="counter">
+		<span class="pkmnName center">
+			<a href="#" ng-click="swapMode()">
+				<img class="mode" height="20px" src="css-img/{{creatorMode}}.png" title="Swap to Timer">
+			</a>New counter
+		</span>
+		<select id="cnt-pkmn">
+			<option ng-repeat="pkmn in pokemons" value="{{pkmn.nb}}" data-id="{{pkmn.nb}}">{{pkmn.nb}} - {{pkmn.name}}</option>
+		</select>
+		<form name="methodForm" class="typeForm">
+			Egg<input type="radio" name="type" value="egg">
+			Reset<input type="radio" name="type" value="reset">
+			Radar<input type="radio" name="type" value="radar">
+		</form>
+
+		<form name="versionForm" class="typeForm">
+			DPP<input type="radio" name="version" value="dpp">
+			X/Y<input type="radio" name="version" value="xy">
+			ORSA<input type="radio" name="version" value="orsa">
+		</form>
+
+		<form name="eggForm" class="typeForm">
+			<img src="css-img/charm.png" height="40px"><input type="checkbox" value="charm">
+			Masuda<input type="checkbox" value="masuda">
+		</form>
+
+		<button class="newCounter gotIt" ng-click="createCounter()">Create</button>
+	</div>
+	<div ng-switch-when="chrono">
+		<span class="pkmnName center">
+			<a href="#" ng-click="swapMode()">
+				<img class="mode" height="20px" src="css-img/{{creatorMode}}.png" title="Swap to Counter">
+			</a>Timer
+		</span>
+		<div id="displayChrono">
+			<span id="min" class="chrono">00</span> : 
+			<span id="sec" class="chrono">00</span> : 
+			<span id="msec" class="chrono">000</span>
+		</div>
+		<div class="buttons">
+			<button id="chronoStart" ng-click="startTimer()">Start</button>
+			<button id="chronoReset" ng-click="resetTimer()">Reset</button>
+		</div>
+	</div>
+</div>
