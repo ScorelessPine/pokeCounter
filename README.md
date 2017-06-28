@@ -1,5 +1,5 @@
 # pokeCounter
-Code of the website http://poke-counter.com
+Code of the website http://poke-shinycounter.com
 
 #1 - Concept
 The objective is to create a tool for Shiny Hunters.
@@ -16,3 +16,5 @@ At the moment all the datas are saved on the client computer. It would be nice t
 pokemon.js : JSON with the National ID and the name of each Pokemon.
 img        : image of each Pokemon.
 css-img    : images use by the CSS
+
+Main code forked from pokeCounter and edited slightly
