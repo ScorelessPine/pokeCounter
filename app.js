@@ -1,5 +1,5 @@
 var phonecatApp = angular.module('pokeCounter', ['ngRoute']);
-var fb = new Firebase("https://poke-counter.firebaseio.com");
+var fb = new Firebase("https://poke-shinycounter.firebaseio.com");
 //(65535/8200-chain*200)/65536
 //(14747 - 40*chain)/2621440*(41-chain);
 //COUNTER OBJECT
@@ -157,10 +157,28 @@ phonecatApp.config(function($routeProvider){
 	};
 
 	$scope.onkeyUp = function(event){
-		if( event.keyCode == 32 && $scope.counterSelected){
-			$scope.inc(1, $scope.counterSelected);
+		if( event.keyCode == 90 && $scope.collection[1]){
+			$scope.inc(1, $scope.collection[1].id);
 		}
 	};
+	
+	$scope.onkeyUp = function(event){
+		if( event.keyCode == 88 && $scope.collection[2]){
+			$scope.inc(1, $scope.collection[2].id);
+		}
+	};
+	
+	$scope.onkeyUp = function(event){
+		if( event.keyCode == 67 && $scope.collection[3]){
+			$scope.inc(1, $scope.collection[3].id);
+		}
+	};
+	$scope.onkeyUp = function(event){
+		if( event.keyCode == 86 && $scope.collection[4]){
+			$scope.inc(1, $scope.collection[4].id);
+		}
+	};
+	
 
 	$scope.setSelected = function(jObject){
 		$('div.counter').removeClass('selected');
